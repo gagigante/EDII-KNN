@@ -9,7 +9,17 @@ package knn;
  *
  * @author gabri
  */
-public class distanciaDoTarget {
+public class distanciaDoTarget implements Comparable<distanciaDoTarget> {
     public String classe;
     public float distancia;
+    
+    public int compareTo(distanciaDoTarget d) {
+        if(this.distancia > d.distancia){
+            return 1;
+        }
+        else if(this.distancia < d.distancia){
+            return -1;
+        }
+        return this.classe.compareToIgnoreCase(d.classe);
+    }
 }

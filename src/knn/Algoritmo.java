@@ -6,8 +6,11 @@
 package knn;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -54,6 +57,28 @@ public class Algoritmo {
             lista.add(d);
         }
         
-        return "";
-    }
+        Collections.sort(lista);
+        
+        ArrayList<String> listaClasse = new ArrayList();
+        int i = 0;
+        while(i < k){
+            distanciaDoTarget obj = lista.get(i);
+            listaClasse.add(obj.classe);
+            i++;
+        }
+        
+        Map<String, Long> counted = listaClasse.stream()
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        
+        int maior = 0;
+        String classeSugerida = "";
+        for(Map.Entry<String,Long> pair : counted.entrySet()) {
+            if(pair.getValue().intValue() > maior){
+                maior = pair.getValue().intValue();
+                classeSugerida = pair.getKey();
+            }
+        }        
+        
+        return classeSugerida;
+    }    
 }

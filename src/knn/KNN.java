@@ -7,11 +7,8 @@ package knn;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 /**
  *
@@ -45,18 +42,17 @@ public class KNN {
             // de repetição atingir o final do arquivo texto
             
             String atributos[] = linha.split(","); //primeira linha (são os atributos)
-            String valores[];
             
             Boolean isAtributo = true;
             
             Algoritmo a = new Algoritmo();
             
             while (linha != null) {
-                if(isAtributo){
+                if(isAtributo){ // não pegar a primeira linha
                     isAtributo = false;
                 }else{
-                    a.dataset.add(linha.split(","));
-                    datasetSemClasse.add(linha.substring(0, linha.lastIndexOf(",")));
+                    a.dataset.add(linha.split(",")); // lista array de strings
+                    datasetSemClasse.add(linha.substring(0, linha.lastIndexOf(","))); // lista de strings
                 }
                 
                 linha = lerArq.readLine(); // lê da segunda até a última linha
@@ -71,7 +67,8 @@ public class KNN {
                     }
                 }
                 
-                a.classify(a.dataset, 3, datasetSemClasse.get(4));
+                String classeSugerida = a.classify(a.dataset, 3, datasetSemClasse.get(5));
+                System.out.println("A classe sugerida é: " + classeSugerida);
             } catch (NumberFormatException e) {
                 System.out.println("Não pode ser transformado num tipo float");
             }
