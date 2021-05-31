@@ -20,13 +20,13 @@ public class Algoritmo {
     public LinkedList<String[]> dataset = new LinkedList<>();
     
     public float euclidianDistance(String currentReg, String target){
-        String[] currentVetor = currentReg.split(",");
-        String[] targ = target.split(",");
+        String[] currentVetor = currentReg.split(","); // array da linha 
+        String[] targ = target.split(","); // array da linha
         float somatorio = 0;
         
         for(int i = 0; i < currentVetor.length - 1; i++) {
-            float diferenca = Float.parseFloat(currentVetor[i]) - Float.parseFloat(targ[i]);
-            somatorio += Math.pow(diferenca, 2); 
+            float diferenca = Float.parseFloat(currentVetor[i]) - Float.parseFloat(targ[i]); // conta da diferença
+            somatorio += Math.pow(diferenca, 2); // somatorio das diferenças
         }
         
         return (float)Math.sqrt(somatorio);
@@ -52,30 +52,29 @@ public class Algoritmo {
             
             distanciaDoTarget d = new distanciaDoTarget();
             
-            d.distancia = euclidianDistance(currentRegValor.substring(0, currentRegValor.length() - 1), target);
+            d.distancia = euclidianDistance(currentRegValor.substring(0, currentRegValor.length() - 1), target); // chama o método euclidianDistance
             d.classe = vetor[vetor.length - 1];
             lista.add(d);
         }
         
-        Collections.sort(lista);
+        Collections.sort(lista); // ordena lista de objeto
         
         ArrayList<String> listaClasse = new ArrayList();
         int i = 0;
         while(i < k){
             distanciaDoTarget obj = lista.get(i);
-            listaClasse.add(obj.classe);
+            listaClasse.add(obj.classe); // lista de strings de classes
             i++;
         }
         
-        Map<String, Long> counted = listaClasse.stream()
-            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map<String, Long> classeAgrupada = listaClasse.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())); // agrupar por quantidade de classes
         
         int maior = 0;
         String classeSugerida = "";
-        for(Map.Entry<String,Long> pair : counted.entrySet()) {
-            if(pair.getValue().intValue() > maior){
-                maior = pair.getValue().intValue();
-                classeSugerida = pair.getKey();
+        for(Map.Entry<String,Long> contador : classeAgrupada.entrySet()) { // itera map classeAgrupada
+            if(contador.getValue().intValue() > maior){ // verifica qual classe aparece mais
+                maior = contador.getValue().intValue();
+                classeSugerida = contador.getKey(); // atualiza a classe sugerida
             }
         }        
         

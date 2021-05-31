@@ -34,7 +34,7 @@ public class KNN {
         //      1.75,69,25,Programmer
 
         try {
-            FileReader arquivo = new FileReader("C:\\dataset.txt");
+            FileReader arquivo = new FileReader("C:\\dataset.txt"); // ALTERAR AQUI A URL
             BufferedReader lerArq = new BufferedReader(arquivo);
 
             String linha = lerArq.readLine(); // lê a primeira linha
@@ -60,15 +60,15 @@ public class KNN {
             
             arquivo.close();
             
-            try{
+            try{ // verifica se as strings podem ser transformados em float
                 for(String vetor : datasetSemClasse){
                     for(String valor : vetor.split(",")){
                         float num = Float.parseFloat(valor);
                     }
                 }
                 
-                String classeSugerida = a.classify(a.dataset, 3, datasetSemClasse.get(5));
-                System.out.println("A classe sugerida é: " + classeSugerida);
+                String classeSugerida = a.classify(a.dataset, 3, datasetSemClasse.get(5)); // chama o método classify
+                System.out.println("A classe sugerida é: " + classeSugerida); // printa a resposta KNN
             } catch (NumberFormatException e) {
                 System.out.println("Não pode ser transformado num tipo float");
             }

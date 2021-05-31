@@ -13,7 +13,7 @@ public class distanciaDoTarget implements Comparable<distanciaDoTarget> {
     public String classe;
     public float distancia;
     
-    public int compareTo(distanciaDoTarget d) {
+    public int compareTo(distanciaDoTarget d) { // ordenar lista pela distância
         if(this.distancia > d.distancia){
             return 1;
         }
