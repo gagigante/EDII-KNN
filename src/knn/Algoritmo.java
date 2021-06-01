@@ -52,7 +52,7 @@ public class Algoritmo {
             
             distanciaDoTarget d = new distanciaDoTarget();
             
-            d.distancia = euclidianDistance(currentRegValor.substring(0, currentRegValor.length() - 1), target); // chama o método euclidianDistance
+            d.distancia = this.euclidianDistance(currentRegValor.substring(0, currentRegValor.length() - 1), target); // chama o método euclidianDistance
             d.classe = vetor[vetor.length - 1];
             lista.add(d);
         }

@@ -22,19 +22,19 @@ public class KNN {
     public static void main(String[] args) throws IOException {
         LinkedList<String> datasetSemClasse = new LinkedList<>();
 
-        //      dataset.txt 
-        //      Height,Weight,Age,Class
-        //      1.70,65,20,Programmer
-        //      1.90,85,33,Builder
-        //      1.78,76,31,Builder
-        //      1.73,74,24,Programmer
-        //      1.81,75,35,Builder
-        //      1.73,70,75,Scientist
-        //      1.80,71,63,Scientist
-        //      1.75,69,25,Programmer
+//              dataset.txt 
+//              Height,Weight,Age,Class
+//              1.70,65,20,Programmer
+//              1.90,85,33,Builder
+//              1.78,76,31,Builder
+//              1.73,74,24,Programmer
+//              1.81,75,35,Builder
+//              1.73,70,75,Scientist
+//              1.80,71,63,Scientist
+//              1.75,69,25,Programmer
 
         try {
-            FileReader arquivo = new FileReader("C:\\dataset.txt"); // ALTERAR AQUI A URL
+            FileReader arquivo = new FileReader("dataset.txt"); // ALTERAR AQUI A URL
             BufferedReader lerArq = new BufferedReader(arquivo);
 
             String linha = lerArq.readLine(); // lê a primeira linha
@@ -72,8 +72,6 @@ public class KNN {
             } catch (NumberFormatException e) {
                 System.out.println("Não pode ser transformado num tipo float");
             }
-            
-            
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
             e.getMessage());
